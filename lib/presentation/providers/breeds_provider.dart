@@ -15,7 +15,7 @@ class BreedsNotifier extends StateNotifier<AsyncValue<List<BreedEntity>>> {
   List<BreedEntity> breeds = [];
 
   BreedsNotifier(this._repository) : super(const AsyncValue.loading()) {
-    fetchBreeds();
+    //fetchBreeds();
   }
 
   Future<void> fetchBreeds() async {
@@ -51,8 +51,8 @@ class BreedsNotifier extends StateNotifier<AsyncValue<List<BreedEntity>>> {
       state = AsyncValue.error(e, stackTrace);
     }
   }
-  void resetBreeds() {
+  Future<void> resetBreeds() async {
     state = const AsyncValue.loading();
-    fetchBreeds();
+    await fetchBreeds();
   }
 }
